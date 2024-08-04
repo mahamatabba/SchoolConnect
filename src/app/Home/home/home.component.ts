@@ -20,18 +20,21 @@ export class HomeComponent {
     this.canInstall = true;
   }
 
-  installPwa(): void {
-    this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choiceResult: any) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('Utilisateur accepte l\'installation');
-      } else {
-        console.log('Utilisateur refuse l\'installation');
-      }
-      this.deferredPrompt = null;
-      this.canInstall = false;
-    });
+
+
+
+  showDetails: { [key: string]: boolean } = {};
+
+  toggleDetails(section: string): void {
+    this.showDetails[section] = !this.showDetails[section];
   }
 
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  }
+  }
 
 }
