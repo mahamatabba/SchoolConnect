@@ -1,0 +1,56 @@
+:host {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #1a202c; // Dark sidebar color
+    transition: width 0.3s ease-in-out;
+  }
+
+  .content {
+    padding: 1.5rem;
+    transition: margin-left 0.3s ease-in-out;
+
+    &.collapsed {
+      margin-left: 70px; // Adjust according to collapsed sidebar width
+    }
+
+    &.expanded {
+      margin-left: 260px; // Adjust according to expanded sidebar width
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .card-header {
+    padding: 1rem;
+    background: linear-gradient(90deg, #38b2ac 0%, #4299e1 100%);
+    color: #fff;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-footer {
+    padding: 1rem;
+    background: #f7fafc;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

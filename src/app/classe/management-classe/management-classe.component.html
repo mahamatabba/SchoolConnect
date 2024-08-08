@@ -1,0 +1,31 @@
+<div class="flex min-h-screen bg-gray-50">
+  <app-sidebar (toggleSidebarEvent)="isCollapsed = $event"></app-sidebar>
+
+  <div
+    class="flex-1 p-8 transition-all duration-300 ease-in-out"
+    [class.ml-[70px]]="isCollapsed"
+    [class.ml-[260px]]="!isCollapsed"
+  >
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-8">Gestion des Classes</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div
+        *ngFor="let class of classes; let i = index"
+        class="relative bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        [ngStyle]="{'border-top': '4px solid ' + getColor(i)}"
+      >
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-gray-800">{{ class.label }}</h3>
+          <p class="text-lg text-gray-600 mt-2">Étudiants: <span class="font-semibold">{{ class.students.length }}</span></p>
+          <p class="text-lg text-gray-600">Professeurs: <span class="font-semibold">{{ class.teachers.length }}</span></p>
+          <button
+            class="absolute bottom-4 right-4 bg-gray-700 text-white py-1 px-3 rounded-full hover:bg-gray-800 transition-transform duration-200 transform hover:scale-110"
+            (click)="viewClassDetails(class.id)"
+          >
+            Voir Détails
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,8 +16,32 @@ export class UserService {
     return this.apiRequestService.get('api/User/current/schools/teachers');
   }
 
-  getNumberClasses() {
-    return this.apiRequestService.get('api/User/current/schools/classes/count');
+  getClasses() {
+    return this.apiRequestService.get('api/User/current/schools/classes');
+  }
+
+  AddClass(classData: any) {
+    return this.apiRequestService.post('api/User/current/schools/classes', classData);
+  }
+
+  addClass(newClass: any) {
+    return this.apiRequestService.post('api/User/addClass', newClass);
+  }
+
+  updateClass(classData: any) {
+    return this.apiRequestService.put('api/User/updateClass', classData);
+  }
+
+  deleteClass(classId: string) {
+    return this.apiRequestService.delete(`api/User/deleteClass/${classId}`);
+  }
+
+  getAll() {
+    return this.apiRequestService.get('api/User/getAll');
+  }
+
+  updateStudent(user: any) {
+    return this.apiRequestService.put('api/User/updateStudent', user);
   }
 
 }

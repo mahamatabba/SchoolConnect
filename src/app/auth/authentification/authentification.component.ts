@@ -28,9 +28,8 @@ export class AuthentificationComponent {
       const loginData = this.loginForm.value;
       this.authService.login(loginData).subscribe({
         next: (response) => {
-          console.log('Login successful!', response);
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['']);
+          const role = this.authService.getUserRole();
+          this.redirectToDashboard(role);
         },
         error: (err) => {
           console.error('Login failed', err);
@@ -44,6 +43,27 @@ export class AuthentificationComponent {
 
   navigateToSection(sectionId: string) {
     this.router.navigate([`/${sectionId}`]);
+  }
+
+  /**
+   * Redirige l'utilisateur vers le tableau de bord approprié en fonction de son rôle.
+   * @param role Le rôle de l'utilisateur.
+   */
+  private redirectToDashboard(role: string | null): void {
+    switch (role) {
+      case 'Administrator':
+        this.router.navigate(['/admin']);
+        break;
+      case 'Teacher':
+        this.router.navigate(['/teacher']);
+        break;
+      case 'Student':
+        this.router.navigate(['/student']);
+        break;
+      default:
+        console.log(role)
+        this.errorMessage = 'Rôle non reconnu. Veuillez vérifier votre compte.';
+    }
   }
 
 }

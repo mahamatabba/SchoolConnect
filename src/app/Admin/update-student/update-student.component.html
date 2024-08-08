@@ -1,0 +1,79 @@
+<div
+  class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+    <h2 class="text-xl font-semibold mb-4">Modifier l'étudiant</h2>
+    <form (ngSubmit)="submitEditForm()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
+          Prénom
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+          id="firstName"
+          type="text"
+          [(ngModel)]="student.firstName"
+          name="firstName"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="lastName">
+          Nom
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+          id="lastName"
+          type="text"
+          [(ngModel)]="student.lastName"
+          name="lastName"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="phoneNumber">
+          Numéro de téléphone
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+          id="phoneNumber"
+          type="text"
+          [(ngModel)]="student.phoneNumber"
+          name="phoneNumber"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="classId">
+          Classe
+        </label>
+        <select
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+          id="classId"
+          [(ngModel)]="student.classId"
+          name="classId"
+          required
+        >
+          <option *ngFor="let classItem of classes" [value]="classItem.id">
+            {{ classItem.label }}
+          </option>
+        </select>
+      </div>
+      <div class="flex justify-end">
+        <button
+          type="button"
+          class="mr-4 py-2 px-4 bg-gray-600 text-white rounded-lg shadow-md hover:bg-gray-700 transition-all"
+          (click)="closeModal.emit()"
+        >
+          Annuler
+        </button>
+        <button
+          type="submit"
+          class="py-2 px-4 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all"
+        >
+          Sauvegarder
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
